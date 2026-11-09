@@ -4,7 +4,7 @@
  * `system/vitals` source (plugin `system`), so ten widgets about the CPU
  * don't each read /proc.
  */
-import { definePlugin, defineWidget, t } from '@tessera/sdk';
+import { definePlugin, defineWidget, t } from '@kiosko/sdk';
 import { drawVitals } from './draw.ts';
 import { VITALS_SOURCE, anyAlert, type Vitals } from './vitals.ts';
 
@@ -62,7 +62,7 @@ export default definePlugin({
     en: 'The machine at a glance, quiet until something runs hot or fills up. Needs the system vitals source.',
     es: 'La máquina de un vistazo, callada hasta que algo se calienta o se llena. Necesita la fuente de vitales del sistema.',
   },
-  author: 'Tessera',
+  author: 'Kiosko',
   license: 'MIT',
   icon: 'cpu',
   widgets: [vitalsWidget],

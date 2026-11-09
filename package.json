@@ -1,24 +1,24 @@
 {
-  "name": "tessera-plugin-vitals",
+  "name": "kiosko-plugin-vitals",
   "version": "0.1.0",
   "description": "Machine vitals column: CPU temperature, CPU, RAM and disk, per-core bars and disk fill.",
   "type": "module",
   "license": "MIT",
   "author": "Loksly",
   "keywords": [
-    "tessera",
-    "tessera-plugin",
+    "kiosko",
+    "kiosko-plugin",
     "lcd",
     "widgets",
     "system"
   ],
-  "homepage": "https://github.com/Loksly/tessera-plugin-vitals#readme",
+  "homepage": "https://github.com/kiosko-lcd/kiosko-plugin-vitals#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Loksly/tessera-plugin-vitals.git"
+    "url": "git+https://github.com/kiosko-lcd/kiosko-plugin-vitals.git"
   },
   "bugs": {
-    "url": "https://github.com/Loksly/tessera-plugin-vitals/issues"
+    "url": "https://github.com/kiosko-lcd/kiosko-plugin-vitals/issues"
   },
   "exports": {
     ".": {
@@ -26,7 +26,7 @@
       "default": "./dist/index.js"
     }
   },
-  "tessera": {
+  "kiosko": {
     "plugin": "./dist/index.js",
     "id": "vitals"
   },
@@ -45,7 +45,7 @@
     "prepublishOnly": "npm run build"
   },
   "devDependencies": {
-    "@tessera/sdk": "^0.1.0",
+    "@kiosko/sdk": "^0.1.0",
     "@types/node": "^24.0.0",
     "esbuild": "^0.25.0",
     "typescript": "^5.9.3"

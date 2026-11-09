@@ -6,7 +6,7 @@
  * blocked session, not the disk. Amber or red appear only past the
  * thresholds, and then they do compete, which is exactly the point.
  */
-import type { Graphics, Localized, RenderContext, ThemeColors } from '@tessera/sdk';
+import type { Graphics, Localized, RenderContext, ThemeColors } from '@kiosko/sdk';
 import { diskRatio, gigabytes, percent, statsOf, vitalLevel, vitalsOf, type Level, type VitalThresholds } from './vitals.ts';
 
 type Ctx = Pick<RenderContext<unknown, unknown>, 'box' | 'theme' | 'kit' | 't' | 'sources'>;
