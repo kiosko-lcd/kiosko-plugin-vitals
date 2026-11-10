@@ -4,7 +4,7 @@
  * `system/vitals` source (plugin `system`), so ten widgets about the CPU
  * don't each read /proc.
  */
-import { definePlugin, defineWidget, t } from '@kiosko/sdk';
+import { definePlugin, defineWidget, t, type Localized } from '@kiosko/sdk';
 import { drawVitals } from './draw.ts';
 import { VITALS_SOURCE, anyAlert, type Vitals } from './vitals.ts';
 
@@ -25,6 +25,9 @@ export const DEMO_VITALS: Vitals = {
   uptime: 836 * 3600,
 };
 
+/** A threshold in %, as every vital but the temperature has. */
+const pct = (def: number, label: Localized, help?: Localized) => t.integer({ default: def, min: 0, max: 100, unit: '%', slider: true, label, ...(help ? { help } : {}) });
+
 export const vitalsWidget = defineWidget({
   id: 'vitals',
   name: { en: 'System vitals', es: 'Vitales del sistema' },
@@ -37,13 +40,17 @@ export const vitalsWidget = defineWidget({
   tags: ['cpu', 'ram', 'disk', 'temperature'],
   size: { min: { w: 200, h: 160 }, preferred: { w: 600, h: 390 } },
   options: t.object({
-    warn: t.number({ default: 0.85, min: 0, max: 1, step: 0.05, slider: true, label: { en: 'Amber from (CPU, RAM, disk)', es: 'Ámbar desde (CPU, RAM, disco)' } }),
-    alert: t.number({ default: 0.95, min: 0, max: 1, step: 0.05, slider: true, label: { en: 'Red from (CPU, RAM, disk)', es: 'Rojo desde (CPU, RAM, disco)' } }),
+    cpuWarn: pct(85, { en: 'Amber CPU from', es: 'CPU ámbar desde' }, { en: 'Overall and per core.', es: 'Total y por núcleo.' }),
+    cpuAlert: pct(95, { en: 'Red CPU from', es: 'CPU roja desde' }),
+    ramWarn: pct(85, { en: 'Amber RAM from', es: 'RAM ámbar desde' }),
+    ramAlert: pct(95, { en: 'Red RAM from', es: 'RAM roja desde' }),
+    diskWarn: pct(85, { en: 'Amber disk from', es: 'Disco ámbar desde' }),
+    diskAlert: pct(95, { en: 'Red disk from', es: 'Disco rojo desde' }),
     tempWarn: t.integer({ default: 85, min: 30, max: 120, unit: '°C', label: { en: 'Amber temperature', es: 'Temperatura ámbar' } }),
     tempAlert: t.integer({ default: 95, min: 30, max: 120, unit: '°C', label: { en: 'Red temperature', es: 'Temperatura roja' } }),
-    cores: t.boolean({ default: true, label: { en: 'Per-core bars', es: 'Barras por núcleo' } }),
+    showCores: t.boolean({ default: true, label: { en: 'Per-core bars', es: 'Barras por núcleo' } }),
     perCoreMinWidth: t.integer({ default: 420, min: 150, max: 2000, unit: 'px', advanced: true, label: { en: 'Per-core bars from this width', es: 'Barras por núcleo a partir de este ancho' } }),
-    disk: t.boolean({ default: true, label: { en: 'Disk bar', es: 'Barra del disco' } }),
+    showDisk: t.boolean({ default: true, label: { en: 'Disk bar', es: 'Barra del disco' } }),
   }),
   sources: [VITALS_SOURCE],
   render(g, ctx) {

@@ -7,7 +7,7 @@
  * thresholds, and then they do compete, which is exactly the point.
  */
 import type { Graphics, Localized, RenderContext, ThemeColors } from '@kiosko/sdk';
-import { diskRatio, gigabytes, percent, statsOf, vitalLevel, vitalsOf, type Level, type VitalThresholds } from './vitals.ts';
+import { diskRatio, gigabytes, pairOf, percent, statsOf, vitalLevel, vitalsOf, type Level, type VitalThresholds } from './vitals.ts';
 
 type Ctx = Pick<RenderContext<unknown, unknown>, 'box' | 'theme' | 'kit' | 't' | 'sources'>;
 
@@ -33,8 +33,8 @@ export function levelColor(l: Level, c: ThemeColors): string {
 
 export interface VitalsOptions extends VitalThresholds {
   perCoreMinWidth: number;
-  cores: boolean;
-  disk: boolean;
+  showCores: boolean;
+  showDisk: boolean;
 }
 
 /** Height a bar takes, with and without its note, at scale 1 (label baseline to next baseline). */
@@ -79,9 +79,9 @@ export function drawVitals(g: Graphics, ctx: Ctx, o: VitalsOptions): void {
   const bottom = y + h;
   let top = statsBottom + 16 * s;
   const ratio = diskRatio(v);
-  const diskWanted = o.disk && ratio !== null;
+  const diskWanted = o.showDisk && ratio !== null;
   const diskNeed = (withNote: boolean) => ((withNote ? BAR_SLOT_WITH_NOTE : BAR_SLOT) - 20) * s + 14 * s;
-  const cores = o.cores && wide ? (v.cores ?? []) : [];
+  const cores = o.showCores && wide ? (v.cores ?? []) : [];
   if (cores.length) {
     // A bounded band: an idle machine is sixteen almost empty lanes, and
     // stretching them to the full height trades black for grey for nothing.
@@ -97,7 +97,7 @@ export function drawVitals(g: Graphics, ctx: Ctx, o: VitalsOptions): void {
       for (const bar of kit.sparkBars(cores, w, barsH, { gap: Math.max(1, Math.round(3 * s)), max: 1 })) {
         g.fillStyle = c.bg;
         g.fillRect(x + bar.x, barsTop, bar.w, barsH);
-        g.fillStyle = levelColor(vitalLevel(cores[bar.index] ?? 0, o), c);
+        g.fillStyle = levelColor(vitalLevel(cores[bar.index] ?? 0, pairOf(o, 'cpu')), c);
         g.fillRect(x + bar.x, barsTop + bar.y, bar.w, bar.h);
       }
       top = barsTop + barsH + 20 * s;
@@ -109,7 +109,7 @@ export function drawVitals(g: Graphics, ctx: Ctx, o: VitalsOptions): void {
     const bandTop = top + 14 * s;
     if (bandTop - 14 * s + diskNeed(false) <= bottom) {
       const note = bandTop - 14 * s + diskNeed(true) <= bottom ? fill(t(TEXT.diskNote), { used: gigabytes(v.disk.used), total: gigabytes(v.disk.total), free: gigabytes(Math.max(0, v.disk.total - v.disk.used)) }) : null;
-      drawBar(g, ctx, x, bandTop, w, fill(t(TEXT.diskBar), { path: v.disk.path }), percent(ratio!), ratio!, note, levelColor(vitalLevel(ratio!, o), c), s);
+      drawBar(g, ctx, x, bandTop, w, fill(t(TEXT.diskBar), { path: v.disk.path }), percent(ratio!), ratio!, note, levelColor(vitalLevel(ratio!, pairOf(o, 'disk')), c), s);
     }
   }
 }

@@ -36,19 +36,39 @@ export function vitalsOf(sources: Record<string, unknown>): Vitals | undefined {
 /**
  * Thresholds of their own, higher than the usage ones: RAM at 65 % or a disk
  * at 70 % is any Tuesday, and with the usage thresholds the column would
- * live in amber, competing with the sessions that really claim you.
+ * live in amber, competing with the sessions that really claim you. One pair
+ * per vital, in % (temperature in °C): a disk at 85 % is normal life, a CPU
+ * at 85 % is not.
  */
 export interface VitalThresholds {
-  warn: number;
-  alert: number;
+  /** CPU use, overall and per core, %. */
+  cpuWarn: number;
+  cpuAlert: number;
+  /** Memory in use, %. */
+  ramWarn: number;
+  ramAlert: number;
+  /** Disk fill, %. */
+  diskWarn: number;
+  diskAlert: number;
+  /** CPU temperature, °C. */
   tempWarn: number;
   tempAlert: number;
 }
 
+/** The pair of thresholds of one vital. */
+export interface Pair {
+  warn: number;
+  alert: number;
+}
+
+export const pairOf = (t: VitalThresholds, key: 'cpu' | 'ram' | 'disk'): Pair => ({ warn: t[`${key}Warn`], alert: t[`${key}Alert`] });
+
 export type Level = 'normal' | 'warn' | 'alert';
 
-export function vitalLevel(ratio: number, t: Pick<VitalThresholds, 'warn' | 'alert'>): Level {
-  return ratio >= t.alert ? 'alert' : ratio >= t.warn ? 'warn' : 'normal';
+/** Level of a ratio (0..1) against a pair of thresholds in %. */
+export function vitalLevel(ratio: number, t: Pair): Level {
+  const pct = ratio * 100;
+  return pct >= t.alert ? 'alert' : pct >= t.warn ? 'warn' : 'normal';
 }
 
 export function tempLevel(celsius: number, t: Pick<VitalThresholds, 'tempWarn' | 'tempAlert'>): Level {
@@ -76,9 +96,9 @@ const ratio = (x: { used: number; total: number }) => (x.total > 0 ? x.used / x.
 export function statsOf(v: Vitals, t: VitalThresholds): Stat[] {
   const out: Stat[] = [];
   if (typeof v.cpuTemp === 'number') out.push({ key: 'temp', value: `${Math.round(v.cpuTemp)}°`, level: tempLevel(v.cpuTemp, t) });
-  if (typeof v.cpuUsage === 'number') out.push({ key: 'cpu', value: percent(v.cpuUsage), level: vitalLevel(v.cpuUsage, t) });
-  if (v.mem) out.push({ key: 'ram', value: percent(ratio(v.mem)), level: vitalLevel(ratio(v.mem), t) });
-  if (v.disk) out.push({ key: 'disk', value: percent(ratio(v.disk)), level: vitalLevel(ratio(v.disk), t) });
+  if (typeof v.cpuUsage === 'number') out.push({ key: 'cpu', value: percent(v.cpuUsage), level: vitalLevel(v.cpuUsage, pairOf(t, 'cpu')) });
+  if (v.mem) out.push({ key: 'ram', value: percent(ratio(v.mem)), level: vitalLevel(ratio(v.mem), pairOf(t, 'ram')) });
+  if (v.disk) out.push({ key: 'disk', value: percent(ratio(v.disk)), level: vitalLevel(ratio(v.disk), pairOf(t, 'disk')) });
   return out;
 }
 

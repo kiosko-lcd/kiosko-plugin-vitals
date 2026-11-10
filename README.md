@@ -32,13 +32,17 @@ Uses: `system/vitals`.
 
 | Option | Type | Default | |
 |---|---|---|---|
-| `warn` | number | `0.85` | Amber from (CPU, RAM, disk) |
-| `alert` | number | `0.95` | Red from (CPU, RAM, disk) |
+| `cpuWarn` | number | `85` | Amber CPU from. Overall and per core. |
+| `cpuAlert` | number | `95` | Red CPU from |
+| `ramWarn` | number | `85` | Amber RAM from |
+| `ramAlert` | number | `95` | Red RAM from |
+| `diskWarn` | number | `85` | Amber disk from |
+| `diskAlert` | number | `95` | Red disk from |
 | `tempWarn` | number | `85` | Amber temperature |
 | `tempAlert` | number | `95` | Red temperature |
-| `cores` | boolean | `true` | Per-core bars |
+| `showCores` | boolean | `true` | Per-core bars |
 | `perCoreMinWidth` | number | `420` | Per-core bars from this width |
-| `disk` | boolean | `true` | Disk bar |
+| `showDisk` | boolean | `true` | Disk bar |
 
 ## Development
 
