@@ -64,7 +64,7 @@ export const vitalsWidget = defineWidget({
 export default definePlugin({
   id: 'vitals',
   name: { en: 'Vitals', es: 'Vitales' },
-  version: '0.1.0',
+  version: '0.2.0',
   description: {
     en: 'The machine at a glance, quiet until something runs hot or fills up. Needs the system vitals source.',
     es: 'La máquina de un vistazo, callada hasta que algo se calienta o se llena. Necesita la fuente de vitales del sistema.',
