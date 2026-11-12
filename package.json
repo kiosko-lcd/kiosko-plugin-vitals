@@ -1,6 +1,6 @@
 {
   "name": "kiosko-plugin-vitals",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Machine vitals column: CPU temperature, CPU, RAM and disk, per-core bars and disk fill.",
   "type": "module",
   "license": "MIT",
@@ -45,7 +45,7 @@
     "prepublishOnly": "npm run build"
   },
   "devDependencies": {
-    "@kiosko/sdk": "^0.1.0",
+    "@kiosko/sdk": "^0.2.0",
     "@types/node": "^24.0.0",
     "esbuild": "^0.25.0",
     "typescript": "^5.9.3"
