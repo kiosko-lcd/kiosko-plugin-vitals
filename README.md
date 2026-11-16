@@ -20,6 +20,12 @@ npm install --prefix ~/.config/kiosko/plugins kiosko-plugin-vitals
 
 - The `system/vitals` source from [kiosko-plugin-system](../kiosko-plugin-system).
 
+## What it does on your machine
+
+- Nothing outside Kiosko: no network, no programs, no files of yours.
+
+- Needs `system/vitals` from [kiosko-plugin-system](../kiosko-plugin-system).
+
 ## Widgets
 
 ### System vitals — `vitals/vitals`

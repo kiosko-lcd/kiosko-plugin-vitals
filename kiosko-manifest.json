@@ -1,0 +1,267 @@
+{
+  "manifest": 1,
+  "id": "vitals",
+  "package": "kiosko-plugin-vitals",
+  "name": {
+    "en": "Vitals",
+    "es": "Vitales"
+  },
+  "version": "0.2.0",
+  "description": {
+    "en": "The machine at a glance, quiet until something runs hot or fills up. Needs the system vitals source.",
+    "es": "La máquina de un vistazo, callada hasta que algo se calienta o se llena. Necesita la fuente de vitales del sistema."
+  },
+  "author": "Kiosko",
+  "license": "MIT",
+  "homepage": "https://github.com/kiosko-lcd/kiosko-plugin-vitals#readme",
+  "repository": "https://github.com/kiosko-lcd/kiosko-plugin-vitals.git",
+  "icon": "cpu",
+  "sdk": "^0.2.0",
+  "platforms": [
+    "linux",
+    "darwin",
+    "win32"
+  ],
+  "languages": [
+    "en",
+    "es"
+  ],
+  "categories": [
+    "system"
+  ],
+  "tags": [
+    "cpu",
+    "ram",
+    "disk",
+    "temperature"
+  ],
+  "permissions": {},
+  "riskyOptions": [],
+  "requires": [
+    {
+      "type": "system/vitals",
+      "plugin": "system"
+    }
+  ],
+  "optional": [],
+  "widgets": [
+    {
+      "type": "vitals/vitals",
+      "name": {
+        "en": "System vitals",
+        "es": "Vitales del sistema"
+      },
+      "description": {
+        "en": "CPU temperature, CPU, RAM and disk in dim ink that only turns amber or red past your thresholds; per-core bars when wide.",
+        "es": "Temperatura de CPU, CPU, RAM y disco en tinta apagada que solo se vuelve ámbar o roja al pasar tus umbrales; barras por núcleo si hay ancho."
+      },
+      "icon": "cpu",
+      "category": "system",
+      "tags": [
+        "cpu",
+        "ram",
+        "disk",
+        "temperature"
+      ],
+      "size": {
+        "min": {
+          "w": 200,
+          "h": 160
+        },
+        "preferred": {
+          "w": 600,
+          "h": 390
+        }
+      },
+      "chrome": "card",
+      "sources": [
+        "system/vitals"
+      ],
+      "options": {
+        "default": {
+          "cpuWarn": 85,
+          "cpuAlert": 95,
+          "ramWarn": 85,
+          "ramAlert": 95,
+          "diskWarn": 85,
+          "diskAlert": 95,
+          "tempWarn": 85,
+          "tempAlert": 95,
+          "showCores": true,
+          "perCoreMinWidth": 420,
+          "showDisk": true
+        },
+        "x-ui": {},
+        "type": "object",
+        "properties": {
+          "cpuWarn": {
+            "title": "Amber CPU from",
+            "description": "Overall and per core.",
+            "default": 85,
+            "x-ui": {
+              "label": {
+                "en": "Amber CPU from",
+                "es": "CPU ámbar desde"
+              },
+              "help": {
+                "en": "Overall and per core.",
+                "es": "Total y por núcleo."
+              },
+              "unit": "%",
+              "slider": true
+            },
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "cpuAlert": {
+            "title": "Red CPU from",
+            "default": 95,
+            "x-ui": {
+              "label": {
+                "en": "Red CPU from",
+                "es": "CPU roja desde"
+              },
+              "unit": "%",
+              "slider": true
+            },
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "ramWarn": {
+            "title": "Amber RAM from",
+            "default": 85,
+            "x-ui": {
+              "label": {
+                "en": "Amber RAM from",
+                "es": "RAM ámbar desde"
+              },
+              "unit": "%",
+              "slider": true
+            },
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "ramAlert": {
+            "title": "Red RAM from",
+            "default": 95,
+            "x-ui": {
+              "label": {
+                "en": "Red RAM from",
+                "es": "RAM roja desde"
+              },
+              "unit": "%",
+              "slider": true
+            },
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "diskWarn": {
+            "title": "Amber disk from",
+            "default": 85,
+            "x-ui": {
+              "label": {
+                "en": "Amber disk from",
+                "es": "Disco ámbar desde"
+              },
+              "unit": "%",
+              "slider": true
+            },
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "diskAlert": {
+            "title": "Red disk from",
+            "default": 95,
+            "x-ui": {
+              "label": {
+                "en": "Red disk from",
+                "es": "Disco rojo desde"
+              },
+              "unit": "%",
+              "slider": true
+            },
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "tempWarn": {
+            "title": "Amber temperature",
+            "default": 85,
+            "x-ui": {
+              "label": {
+                "en": "Amber temperature",
+                "es": "Temperatura ámbar"
+              },
+              "unit": "°C"
+            },
+            "type": "integer",
+            "minimum": 30,
+            "maximum": 120
+          },
+          "tempAlert": {
+            "title": "Red temperature",
+            "default": 95,
+            "x-ui": {
+              "label": {
+                "en": "Red temperature",
+                "es": "Temperatura roja"
+              },
+              "unit": "°C"
+            },
+            "type": "integer",
+            "minimum": 30,
+            "maximum": 120
+          },
+          "showCores": {
+            "title": "Per-core bars",
+            "default": true,
+            "x-ui": {
+              "label": {
+                "en": "Per-core bars",
+                "es": "Barras por núcleo"
+              }
+            },
+            "type": "boolean"
+          },
+          "perCoreMinWidth": {
+            "title": "Per-core bars from this width",
+            "default": 420,
+            "x-ui": {
+              "label": {
+                "en": "Per-core bars from this width",
+                "es": "Barras por núcleo a partir de este ancho"
+              },
+              "advanced": true,
+              "unit": "px"
+            },
+            "type": "integer",
+            "minimum": 150,
+            "maximum": 2000
+          },
+          "showDisk": {
+            "title": "Disk bar",
+            "default": true,
+            "x-ui": {
+              "label": {
+                "en": "Disk bar",
+                "es": "Barra del disco"
+              }
+            },
+            "type": "boolean"
+          }
+        }
+      },
+      "screenshot": "docs/vitals.png",
+      "animated": false,
+      "urgent": false
+    }
+  ],
+  "sources": [],
+  "interludes": [],
+  "templates": []
+}
