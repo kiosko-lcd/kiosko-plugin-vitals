@@ -64,7 +64,7 @@ export const vitalsWidget = defineWidget({
 export default definePlugin({
   id: 'vitals',
   name: { en: 'Vitals', es: 'Vitales' },
-  version: '0.2.0',
+  version: '0.2.1',
   sdk: '^0.2.0',
   requires: ['system/vitals'],
   description: {
