@@ -14,15 +14,15 @@ type Ctx = Pick<RenderContext<unknown, unknown>, 'box' | 'theme' | 'kit' | 't' |
 const clamp = (v: number, lo: number, hi: number) => Math.max(lo, Math.min(hi, v));
 
 export const TEXT = {
-  temp: { en: 'cpu temp', es: 'temp cpu' },
-  tempShort: { en: 'temp', es: 'temp' },
-  cpu: { en: 'cpu', es: 'cpu' },
-  ram: { en: 'ram', es: 'ram' },
-  disk: { en: 'disk', es: 'disco' },
-  cores: { en: '{n} cores', es: '{n} núcleos' },
-  diskBar: { en: 'Disk {path}', es: 'Disco {path}' },
-  diskNote: { en: '{used} of {total} · {free} free', es: '{used} de {total} · quedan {free}' },
-  noData: { en: 'no system data (needs the system vitals source)', es: 'sin datos del sistema (necesita la fuente de vitales)' },
+  temp: { en: 'cpu temp', es: 'temp cpu', 'zh-Hant': 'CPU 溫度', 'zh-Hans': 'CPU 温度' },
+  tempShort: { en: 'temp', es: 'temp', 'zh-Hant': '溫度', 'zh-Hans': '温度' },
+  cpu: { en: 'cpu', es: 'cpu', 'zh-Hant': 'cpu', 'zh-Hans': 'cpu' },
+  ram: { en: 'ram', es: 'ram', 'zh-Hant': 'ram', 'zh-Hans': 'ram' },
+  disk: { en: 'disk', es: 'disco', 'zh-Hant': '磁碟', 'zh-Hans': '磁盘' },
+  cores: { en: '{n} cores', es: '{n} núcleos', 'zh-Hant': '{n} 核心', 'zh-Hans': '{n} 核' },
+  diskBar: { en: 'Disk {path}', es: 'Disco {path}', 'zh-Hant': '磁碟 {path}', 'zh-Hans': '磁盘 {path}' },
+  diskNote: { en: '{used} of {total} · {free} free', es: '{used} de {total} · quedan {free}', 'zh-Hant': '已用 {used} / {total} · 可用 {free}', 'zh-Hans': '已用 {used} / {total} · 可用 {free}' },
+  noData: { en: 'no system data (needs the system vitals source)', es: 'sin datos del sistema (necesita la fuente de vitales)', 'zh-Hant': '無系統資料（需要系統指標資料來源）', 'zh-Hans': '无系统数据（需要系统指标数据源）' },
 } satisfies Record<string, Localized>;
 
 const fill = (text: string, vars: Record<string, string | number>) => text.replace(/\{(\w+)\}/g, (_, k: string) => String(vars[k] ?? ''));
