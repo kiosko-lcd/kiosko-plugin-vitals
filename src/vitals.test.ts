@@ -63,4 +63,6 @@ test('core count with its plural form', async () => {
   assert.equal(plural(16, COUNT.cores, 'en'), '16 cores');
   assert.equal(plural(16, COUNT.cores, 'es'), '16 núcleos');
   assert.equal(plural(16, COUNT.cores, 'zh-TW'), '16 核心');
+  assert.equal(plural(1, COUNT.cores, 'de'), '1 Kern');
+  assert.equal(plural(16, COUNT.cores, 'de-AT'), '16 Kerne');
 });
