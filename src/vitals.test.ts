@@ -55,3 +55,12 @@ test('disk helpers', () => {
   assert.equal(diskRatio({}), null);
   assert.equal(gigabytes(265 * 1024 ** 3), '265GB');
 });
+
+test('core count with its plural form', async () => {
+  const { plural } = await import('@kiosko/sdk');
+  const { COUNT } = await import('./draw.ts');
+  assert.equal(plural(1, COUNT.cores, 'en'), '1 core');
+  assert.equal(plural(16, COUNT.cores, 'en'), '16 cores');
+  assert.equal(plural(16, COUNT.cores, 'es'), '16 núcleos');
+  assert.equal(plural(16, COUNT.cores, 'zh-TW'), '16 核心');
+});
