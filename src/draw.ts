@@ -14,19 +14,19 @@ type Ctx = Pick<RenderContext<unknown, unknown>, 'box' | 'theme' | 'kit' | 't' |
 const clamp = (v: number, lo: number, hi: number) => Math.max(lo, Math.min(hi, v));
 
 export const TEXT = {
-  temp: { en: 'cpu temp', es: 'temp cpu', 'zh-Hant': 'CPU 溫度', 'zh-Hans': 'CPU 温度' },
-  tempShort: { en: 'temp', es: 'temp', 'zh-Hant': '溫度', 'zh-Hans': '温度' },
-  cpu: { en: 'cpu', es: 'cpu', 'zh-Hant': 'cpu', 'zh-Hans': 'cpu' },
-  ram: { en: 'ram', es: 'ram', 'zh-Hant': 'ram', 'zh-Hans': 'ram' },
-  disk: { en: 'disk', es: 'disco', 'zh-Hant': '磁碟', 'zh-Hans': '磁盘' },
-  diskBar: { en: 'Disk {path}', es: 'Disco {path}', 'zh-Hant': '磁碟 {path}', 'zh-Hans': '磁盘 {path}' },
-  diskNote: { en: '{used} of {total} · {free} free', es: '{used} de {total} · quedan {free}', 'zh-Hant': '已用 {used} / {total} · 可用 {free}', 'zh-Hans': '已用 {used} / {total} · 可用 {free}' },
-  noData: { en: 'no system data (needs the system vitals source)', es: 'sin datos del sistema (necesita la fuente de vitales)', 'zh-Hant': '無系統資料（需要系統指標資料來源）', 'zh-Hans': '无系统数据（需要系统指标数据源）' },
+  temp: { en: 'cpu temp', es: 'temp cpu', de: 'cpu-temp', 'zh-Hant': 'CPU 溫度', 'zh-Hans': 'CPU 温度' },
+  tempShort: { en: 'temp', es: 'temp', de: 'temp', 'zh-Hant': '溫度', 'zh-Hans': '温度' },
+  cpu: { en: 'cpu', es: 'cpu', de: 'cpu', 'zh-Hant': 'cpu', 'zh-Hans': 'cpu' },
+  ram: { en: 'ram', es: 'ram', de: 'ram', 'zh-Hant': 'ram', 'zh-Hans': 'ram' },
+  disk: { en: 'disk', es: 'disco', de: 'platte', 'zh-Hant': '磁碟', 'zh-Hans': '磁盘' },
+  diskBar: { en: 'Disk {path}', es: 'Disco {path}', de: 'Platte {path}', 'zh-Hant': '磁碟 {path}', 'zh-Hans': '磁盘 {path}' },
+  diskNote: { en: '{used} of {total} · {free} free', es: '{used} de {total} · quedan {free}', de: '{used} von {total} · {free} frei', 'zh-Hant': '已用 {used} / {total} · 可用 {free}', 'zh-Hans': '已用 {used} / {total} · 可用 {free}' },
+  noData: { en: 'no system data (needs the system vitals source)', es: 'sin datos del sistema (necesita la fuente de vitales)', de: 'keine Systemdaten (braucht die Datenquelle „Vitalwerte des Rechners“)', 'zh-Hant': '無系統資料（需要系統指標資料來源）', 'zh-Hans': '无系统数据（需要系统指标数据源）' },
 } satisfies Record<string, Localized>;
 
 /** Texts with a count, for `ctx.plural`. */
 export const COUNT = {
-  cores: { en: { one: '{n} core', other: '{n} cores' }, es: { one: '{n} núcleo', other: '{n} núcleos' }, 'zh-Hant': { other: '{n} 核心' }, 'zh-Hans': { other: '{n} 核' } },
+  cores: { en: { one: '{n} core', other: '{n} cores' }, es: { one: '{n} núcleo', other: '{n} núcleos' }, de: { one: '{n} Kern', other: '{n} Kerne' }, 'zh-Hant': { other: '{n} 核心' }, 'zh-Hans': { other: '{n} 核' } },
 } satisfies Record<string, Record<string, PluralForms>>;
 
 const fill = (text: string, vars: Record<string, string | number>) => text.replace(/\{(\w+)\}/g, (_, k: string) => String(vars[k] ?? ''));
