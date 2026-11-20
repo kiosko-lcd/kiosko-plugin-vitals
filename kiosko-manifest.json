@@ -4,12 +4,16 @@
   "package": "kiosko-plugin-vitals",
   "name": {
     "en": "Vitals",
-    "es": "Vitales"
+    "es": "Vitales",
+    "zh-Hant": "機器健康",
+    "zh-Hans": "机器健康"
   },
   "version": "0.2.1",
   "description": {
     "en": "The machine at a glance, quiet until something runs hot or fills up. Needs the system vitals source.",
-    "es": "La máquina de un vistazo, callada hasta que algo se calienta o se llena. Necesita la fuente de vitales del sistema."
+    "es": "La máquina de un vistazo, callada hasta que algo se calienta o se llena. Necesita la fuente de vitales del sistema.",
+    "zh-Hant": "機器狀態一目瞭然，平時保持安靜，直到有東西過熱或滿載。需要系統指標資料來源。",
+    "zh-Hans": "机器状态一目了然，平时保持安静，直到有东西过热或占满。需要系统指标数据源。"
   },
   "author": "Kiosko",
   "license": "MIT",
@@ -24,7 +28,9 @@
   ],
   "languages": [
     "en",
-    "es"
+    "es",
+    "zh-Hant",
+    "zh-Hans"
   ],
   "categories": [
     "system"
@@ -49,11 +55,15 @@
       "type": "vitals/vitals",
       "name": {
         "en": "System vitals",
-        "es": "Vitales del sistema"
+        "es": "Vitales del sistema",
+        "zh-Hant": "系統指標",
+        "zh-Hans": "系统指标"
       },
       "description": {
         "en": "CPU temperature, CPU, RAM and disk in dim ink that only turns amber or red past your thresholds; per-core bars when wide.",
-        "es": "Temperatura de CPU, CPU, RAM y disco en tinta apagada que solo se vuelve ámbar o roja al pasar tus umbrales; barras por núcleo si hay ancho."
+        "es": "Temperatura de CPU, CPU, RAM y disco en tinta apagada que solo se vuelve ámbar o roja al pasar tus umbrales; barras por núcleo si hay ancho.",
+        "zh-Hant": "CPU 溫度、CPU、RAM 與磁碟以暗色顯示，只有超過你設定的門檻才轉為琥珀色或紅色；寬度足夠時顯示各核心長條。",
+        "zh-Hans": "CPU 温度、CPU、RAM 和磁盘以暗色显示，只有超过你设置的阈值才变为琥珀色或红色；宽度足够时显示各核心条形。"
       },
       "icon": "cpu",
       "category": "system",
@@ -101,11 +111,15 @@
             "x-ui": {
               "label": {
                 "en": "Amber CPU from",
-                "es": "CPU ámbar desde"
+                "es": "CPU ámbar desde",
+                "zh-Hant": "CPU 琥珀色門檻",
+                "zh-Hans": "CPU 琥珀色阈值"
               },
               "help": {
                 "en": "Overall and per core.",
-                "es": "Total y por núcleo."
+                "es": "Total y por núcleo.",
+                "zh-Hant": "整體與各核心。",
+                "zh-Hans": "整体和各核心。"
               },
               "unit": "%",
               "slider": true
@@ -120,7 +134,9 @@
             "x-ui": {
               "label": {
                 "en": "Red CPU from",
-                "es": "CPU roja desde"
+                "es": "CPU roja desde",
+                "zh-Hant": "CPU 紅色門檻",
+                "zh-Hans": "CPU 红色阈值"
               },
               "unit": "%",
               "slider": true
@@ -135,7 +151,9 @@
             "x-ui": {
               "label": {
                 "en": "Amber RAM from",
-                "es": "RAM ámbar desde"
+                "es": "RAM ámbar desde",
+                "zh-Hant": "RAM 琥珀色門檻",
+                "zh-Hans": "RAM 琥珀色阈值"
               },
               "unit": "%",
               "slider": true
@@ -150,7 +168,9 @@
             "x-ui": {
               "label": {
                 "en": "Red RAM from",
-                "es": "RAM roja desde"
+                "es": "RAM roja desde",
+                "zh-Hant": "RAM 紅色門檻",
+                "zh-Hans": "RAM 红色阈值"
               },
               "unit": "%",
               "slider": true
@@ -165,7 +185,9 @@
             "x-ui": {
               "label": {
                 "en": "Amber disk from",
-                "es": "Disco ámbar desde"
+                "es": "Disco ámbar desde",
+                "zh-Hant": "磁碟琥珀色門檻",
+                "zh-Hans": "磁盘琥珀色阈值"
               },
               "unit": "%",
               "slider": true
@@ -180,7 +202,9 @@
             "x-ui": {
               "label": {
                 "en": "Red disk from",
-                "es": "Disco rojo desde"
+                "es": "Disco rojo desde",
+                "zh-Hant": "磁碟紅色門檻",
+                "zh-Hans": "磁盘红色阈值"
               },
               "unit": "%",
               "slider": true
@@ -195,7 +219,9 @@
             "x-ui": {
               "label": {
                 "en": "Amber temperature",
-                "es": "Temperatura ámbar"
+                "es": "Temperatura ámbar",
+                "zh-Hant": "溫度琥珀色門檻",
+                "zh-Hans": "温度琥珀色阈值"
               },
               "unit": "°C"
             },
@@ -209,7 +235,9 @@
             "x-ui": {
               "label": {
                 "en": "Red temperature",
-                "es": "Temperatura roja"
+                "es": "Temperatura roja",
+                "zh-Hant": "溫度紅色門檻",
+                "zh-Hans": "温度红色阈值"
               },
               "unit": "°C"
             },
@@ -223,7 +251,9 @@
             "x-ui": {
               "label": {
                 "en": "Per-core bars",
-                "es": "Barras por núcleo"
+                "es": "Barras por núcleo",
+                "zh-Hant": "各核心長條",
+                "zh-Hans": "各核心条形"
               }
             },
             "type": "boolean"
@@ -234,7 +264,9 @@
             "x-ui": {
               "label": {
                 "en": "Per-core bars from this width",
-                "es": "Barras por núcleo a partir de este ancho"
+                "es": "Barras por núcleo a partir de este ancho",
+                "zh-Hant": "寬度達此值時顯示各核心長條",
+                "zh-Hans": "宽度达到此值时显示各核心条形"
               },
               "advanced": true,
               "unit": "px"
@@ -249,7 +281,9 @@
             "x-ui": {
               "label": {
                 "en": "Disk bar",
-                "es": "Barra del disco"
+                "es": "Barra del disco",
+                "zh-Hant": "磁碟長條",
+                "zh-Hans": "磁盘条形"
               }
             },
             "type": "boolean"

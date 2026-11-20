@@ -67,6 +67,7 @@ export default definePlugin({
   id: 'vitals',
   name: { en: 'Vitals', es: 'Vitales', 'zh-Hant': '機器健康', 'zh-Hans': '机器健康' },
   version: '0.2.1',
+  languages: ['en', 'es', 'zh-Hant', 'zh-Hans'],
   sdk: '^0.2.0',
   requires: ['system/vitals'],
   description: {
