@@ -6,24 +6,28 @@
  * blocked session, not the disk. Amber or red appear only past the
  * thresholds, and then they do compete, which is exactly the point.
  */
-import type { Graphics, Localized, RenderContext, ThemeColors } from '@kiosko/sdk';
+import type { Graphics, Localized, PluralForms, RenderContext, ThemeColors } from '@kiosko/sdk';
 import { diskRatio, gigabytes, pairOf, percent, statsOf, vitalLevel, vitalsOf, type Level, type VitalThresholds } from './vitals.ts';
 
-type Ctx = Pick<RenderContext<unknown, unknown>, 'box' | 'theme' | 'kit' | 't' | 'sources'>;
+type Ctx = Pick<RenderContext<unknown, unknown>, 'box' | 'theme' | 'kit' | 't' | 'plural' | 'sources'>;
 
 const clamp = (v: number, lo: number, hi: number) => Math.max(lo, Math.min(hi, v));
 
 export const TEXT = {
-  temp: { en: 'cpu temp', es: 'temp cpu' },
-  tempShort: { en: 'temp', es: 'temp' },
-  cpu: { en: 'cpu', es: 'cpu' },
-  ram: { en: 'ram', es: 'ram' },
-  disk: { en: 'disk', es: 'disco' },
-  cores: { en: '{n} cores', es: '{n} núcleos' },
-  diskBar: { en: 'Disk {path}', es: 'Disco {path}' },
-  diskNote: { en: '{used} of {total} · {free} free', es: '{used} de {total} · quedan {free}' },
-  noData: { en: 'no system data (needs the system vitals source)', es: 'sin datos del sistema (necesita la fuente de vitales)' },
+  temp: { en: 'cpu temp', es: 'temp cpu', 'zh-Hant': 'CPU 溫度', 'zh-Hans': 'CPU 温度' },
+  tempShort: { en: 'temp', es: 'temp', 'zh-Hant': '溫度', 'zh-Hans': '温度' },
+  cpu: { en: 'cpu', es: 'cpu', 'zh-Hant': 'cpu', 'zh-Hans': 'cpu' },
+  ram: { en: 'ram', es: 'ram', 'zh-Hant': 'ram', 'zh-Hans': 'ram' },
+  disk: { en: 'disk', es: 'disco', 'zh-Hant': '磁碟', 'zh-Hans': '磁盘' },
+  diskBar: { en: 'Disk {path}', es: 'Disco {path}', 'zh-Hant': '磁碟 {path}', 'zh-Hans': '磁盘 {path}' },
+  diskNote: { en: '{used} of {total} · {free} free', es: '{used} de {total} · quedan {free}', 'zh-Hant': '已用 {used} / {total} · 可用 {free}', 'zh-Hans': '已用 {used} / {total} · 可用 {free}' },
+  noData: { en: 'no system data (needs the system vitals source)', es: 'sin datos del sistema (necesita la fuente de vitales)', 'zh-Hant': '無系統資料（需要系統指標資料來源）', 'zh-Hans': '无系统数据（需要系统指标数据源）' },
 } satisfies Record<string, Localized>;
+
+/** Texts with a count, for `ctx.plural`. */
+export const COUNT = {
+  cores: { en: { one: '{n} core', other: '{n} cores' }, es: { one: '{n} núcleo', other: '{n} núcleos' }, 'zh-Hant': { other: '{n} 核心' }, 'zh-Hans': { other: '{n} 核' } },
+} satisfies Record<string, Record<string, PluralForms>>;
 
 const fill = (text: string, vars: Record<string, string | number>) => text.replace(/\{(\w+)\}/g, (_, k: string) => String(vars[k] ?? ''));
 
@@ -89,7 +93,7 @@ export function drawVitals(g: Graphics, ctx: Ctx, o: VitalsOptions): void {
     const coresH = Math.min(130 * s, bottom - top - reserve);
     if (coresH >= 30 * s) {
       // On the right: under the first figure there is already its own label.
-      kit.drawTracked(g, fill(t(TEXT.cores), { n: cores.length }), x + w, top - 6 * s, { size: Math.max(9, Math.round(14 * s)), family: f.sansBold, tracking: 2.4 * s, smallCaps: true, color: c.inkFaint, align: 'right' });
+      kit.drawTracked(g, ctx.plural(cores.length, COUNT.cores), x + w, top - 6 * s, { size: Math.max(9, Math.round(14 * s)), family: f.sansBold, tracking: 2.4 * s, smallCaps: true, color: c.inkFaint, align: 'right' });
       const barsTop = top + 6 * s;
       const barsH = coresH - 6 * s;
       // Absolute scale against 100 %: normalising to the busiest core would
