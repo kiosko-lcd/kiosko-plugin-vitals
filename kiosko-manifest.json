@@ -9,7 +9,7 @@
     "zh-Hant": "機器健康",
     "zh-Hans": "机器健康"
   },
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": {
     "en": "The machine at a glance, quiet until something runs hot or fills up. Needs the system vitals source.",
     "es": "La máquina de un vistazo, callada hasta que algo se calienta o se llena. Necesita la fuente de vitales del sistema.",
@@ -314,5 +314,9 @@
   ],
   "sources": [],
   "interludes": [],
-  "templates": []
+  "templates": [],
+  "support": {
+    "issues": "https://github.com/kiosko-lcd/kiosko-plugin-vitals/issues",
+    "docs": "https://github.com/kiosko-lcd/kiosko-plugin-vitals#readme"
+  }
 }

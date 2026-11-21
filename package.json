@@ -1,6 +1,6 @@
 {
   "name": "kiosko-plugin-vitals",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Machine vitals column: CPU temperature, CPU, RAM and disk, per-core bars and disk fill.",
   "type": "module",
   "license": "MIT",

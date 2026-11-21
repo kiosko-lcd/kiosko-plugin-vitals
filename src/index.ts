@@ -67,7 +67,7 @@ export const vitalsWidget = defineWidget({
 export default definePlugin({
   id: 'vitals',
   name: { en: 'Vitals', es: 'Vitales', de: 'Vitalwerte', 'zh-Hant': '機器健康', 'zh-Hans': '机器健康' },
-  version: '0.2.1',
+  version: '0.2.2',
   languages: ['en', 'es', 'de', 'zh-Hant', 'zh-Hans'],
   sdk: '^0.2.0',
   requires: ['system/vitals'],
