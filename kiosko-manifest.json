@@ -9,7 +9,7 @@
     "zh-Hant": "機器健康",
     "zh-Hans": "机器健康"
   },
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": {
     "en": "The machine at a glance, quiet until something runs hot or fills up. Needs the system vitals source.",
     "es": "La máquina de un vistazo, callada hasta que algo se calienta o se llena. Necesita la fuente de vitales del sistema.",
@@ -68,7 +68,7 @@
         "es": "Temperatura de CPU, CPU, RAM y disco en tinta apagada que solo se vuelve ámbar o roja al pasar tus umbrales; barras por núcleo si hay ancho.",
         "de": "CPU-Temperatur, CPU, RAM und Laufwerk in gedämpfter Farbe, die erst jenseits deiner Schwellenwerte gelb oder rot wird; Balken pro Kern, wenn genug Breite da ist.",
         "zh-Hant": "CPU 溫度、CPU、RAM 與磁碟以暗色顯示，只有超過你設定的門檻才轉為琥珀色或紅色；寬度足夠時顯示各核心長條。",
-        "zh-Hans": "CPU 温度、CPU、RAM 和磁盘以暗色显示，只有超过你设置的阈值才变为琥珀色或红色；宽度足够时显示各核心条形。"
+        "zh-Hans": "CPU 温度、CPU、RAM 和磁盘以暗色显示，只有超过你设置的阈值才变为琥珀色或红色；宽度足够时显示各核心进度条。"
       },
       "icon": "cpu",
       "category": "system",
@@ -268,7 +268,7 @@
                 "es": "Barras por núcleo",
                 "de": "Balken pro Kern",
                 "zh-Hant": "各核心長條",
-                "zh-Hans": "各核心条形"
+                "zh-Hans": "各核心进度条"
               }
             },
             "type": "boolean"
@@ -282,7 +282,7 @@
                 "es": "Barras por núcleo a partir de este ancho",
                 "de": "Balken pro Kern ab dieser Breite",
                 "zh-Hant": "寬度達此值時顯示各核心長條",
-                "zh-Hans": "宽度达到此值时显示各核心条形"
+                "zh-Hans": "宽度达到此值时显示各核心进度条"
               },
               "advanced": true,
               "unit": "px"
@@ -300,7 +300,7 @@
                 "es": "Barra del disco",
                 "de": "Laufwerksbalken",
                 "zh-Hant": "磁碟長條",
-                "zh-Hans": "磁盘条形"
+                "zh-Hans": "磁盘进度条"
               }
             },
             "type": "boolean"
