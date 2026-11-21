@@ -4,7 +4,7 @@
   "description": "Machine vitals column: CPU temperature, CPU, RAM and disk, per-core bars and disk fill.",
   "type": "module",
   "license": "MIT",
-  "author": "Loksly",
+  "author": "Loksly <info@kioskolcd.dev> (https://kioskolcd.dev)",
   "keywords": [
     "kiosko",
     "kiosko-plugin",
